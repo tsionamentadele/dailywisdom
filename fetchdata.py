@@ -1,4 +1,5 @@
 import requests
+from colorama import Fore, Style
 
 print("Welcome to your daily bite of wisdom!")
 while True: 
@@ -9,7 +10,12 @@ while True:
         data = response.json()
         quote = data[0]['q']
         author = data[0]['a']
-        print(f'"{quote}" - {author}')
+
+        color_code={
+       "author": Fore.CYAN,
+       "quote": Fore.YELLOW
+   }
+        print(f'{color_code["quote"]}"{quote}" - {color_code["author"]}{author}{Style.RESET_ALL}')
         want_to_save=input("Would you like to save this quote to a file? (yes/no): ").strip().lower()
         if want_to_save=="yes":
             with open("daily_quotes.txt","a") as file:
