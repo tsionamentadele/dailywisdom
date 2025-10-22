@@ -20,8 +20,17 @@ while True:
         
         want_another=input("Would you like to receive a motivational quote? (yes/no): ").strip().lower()
         if want_another == "no":
-            print("Thank you for using the quote generator. Have a great day!")
-            break    
+            read_saved=input("want to read saved quotes? (yes/no): ")
+            if read_saved=="yes":
+                with open("daily_quotes.txt","r") as file:
+                    saved_quotes=file.read()
+                    for quote in saved_quotes.split("\n\n"):
+                        print(quote)
+                print("Thank you for using the quote generator. Have a great day!")
+                break  
+            else:
+                print("Thank you for using the quote generator. Have a great day!")
+                break  
         
     except requests.exceptions.RequestException as e:
         print("Failed to retrieve quote. Please try again later.")
